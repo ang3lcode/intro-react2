@@ -1,26 +1,26 @@
 // import logo from './platzi.webp';
+import { TodoCounter } from './TodoCounter';
+import { TodoSearch } from './TodoSearch';
+import { TodoList } from './TodoList';
+import { TodoItem } from './TodoItem';
+
 import './App.css';
+
 
 function App() {
   return (
     <>
-    <TodoItem/>
-    <TodoItem/>
-    <TodoItem/>
+    <TodoCounter/>
+    <TodoSearch/>
+    <TodoList>
+      <TodoItem/>
+    </TodoList>
+    {/*<CreateTodoButton/>    */}
     </>
-  
-    
   );
 }
 
-function TodoItem () {
-  return (
-    <li>
-      <span>v</span>
-      <p>llorar con la llorona</p>
-      <span>x</span>
-    </li>
-  );
-}
+
+
 
 export default App;
