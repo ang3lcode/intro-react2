@@ -5,15 +5,13 @@ import { TodoList } from './TodoList';
 import { TodoItem } from './TodoItem';
 import { CreateTodoButton } from './CreateTodoButton';
 
-import './App.css';
+
 import React from 'react';
 
 const defaultTodos = [
   { text: 'cortar cebolla', completed: true },
   { text: 'Curso de React', completed: true },
-  { text: 'React native', completed: false },
-  { text: 'llorar con la llorona', completed: false },
-  { text: 'aqui', completed: false }
+  { text: 'React native', completed: false }
 ];
 
 
