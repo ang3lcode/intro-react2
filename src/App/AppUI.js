@@ -7,42 +7,41 @@ import { CreateTodoButton } from '../CreateTodoButton/CreateTodoButton';
 import { TodosLoading } from '../TodoLoading/TodosLoading';
 import { TodosError } from '../TodosError/TodosError';
 import { EmptyTodos } from '../EmptyTodos/EmptyTodos';
+import { TodoContext } from '../TodoContext/TodoContext';
 
 
-export const AppUI = ({
-    completedTodos,
-    totalTodos,
-    searchValue,
-    setSearchValue,
-    searchedTodos,
-    onComplete,
-    onDelete,
-    loading,
-    error,
-    }
-) => {
+
+
+export const AppUI = () => {
   return (
     <>
-      <TodoCounter completed={completedTodos} total={totalTodos}/>
-      <TodoSearch
-        searchValue={searchValue}
-        setSearchValue={setSearchValue}
-      />
-      <TodoList>
-        {loading && <TodosLoading />}
-        {error && <TodosError/>}
-        {!loading && searchedTodos.lenght === 0 && <EmptyTodos/>}
-        {searchedTodos.map(todo => (
-          <TodoItem 
-            key={todo.text} 
-            text={todo.text}
-            completed= {todo.completed}
-            onComplete={() => onComplete(todo.text)}
-            onDelete = {() => onDelete(todo.text)}
-          />
-        ))}
-        
-      </TodoList>
+      <TodoCounter/>
+      <TodoSearch/>
+      <TodoContext.Consumer>
+        {({
+          loading,
+          error,
+          searchedTodos,
+          onComplete,
+          onDelete,
+        })=>(
+          <TodoList>
+            {loading && <TodosLoading />}
+            {error && <TodosError/>}
+            {!loading && searchedTodos.lenght === 0 && <EmptyTodos/>}
+            {searchedTodos.map(todo => (
+              <TodoItem 
+                key={todo.text} 
+                text={todo.text}
+                completed= {todo.completed}
+                onComplete={() => onComplete(todo.text)}
+                onDelete = {() => onDelete(todo.text)}
+              />
+            ))}
+            
+          </TodoList>
+        )}
+      </TodoContext.Consumer>
       <CreateTodoButton/>   
     </>
   )
