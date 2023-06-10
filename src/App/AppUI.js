@@ -4,6 +4,10 @@ import { TodoSearch } from '../TodoSearch/TodoSearch';
 import { TodoList } from '../TodoList/TodoList';
 import { TodoItem } from '../TodoItem/TodoItem';
 import { CreateTodoButton } from '../CreateTodoButton/CreateTodoButton';
+import { TodosLoading } from '../TodoLoading/TodosLoading';
+import { TodosError } from '../TodosError/TodosError';
+import { EmptyTodos } from '../EmptyTodos/EmptyTodos';
+
 
 export const AppUI = ({
     completedTodos,
@@ -25,9 +29,9 @@ export const AppUI = ({
         setSearchValue={setSearchValue}
       />
       <TodoList>
-        {loading && <p>estamos cargando</p>}
-        {error && <p>panico</p>}
-        {!loading && searchedTodos.lenght === 0 && <p>agrega un Todo</p>}
+        {loading && <TodosLoading />}
+        {error && <TodosError/>}
+        {!loading && searchedTodos.lenght === 0 && <EmptyTodos/>}
         {searchedTodos.map(todo => (
           <TodoItem 
             key={todo.text} 
