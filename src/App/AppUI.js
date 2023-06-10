@@ -13,6 +13,8 @@ export const AppUI = ({
     searchedTodos,
     onComplete,
     onDelete,
+    loading,
+    error,
     }
 ) => {
   return (
@@ -23,6 +25,9 @@ export const AppUI = ({
         setSearchValue={setSearchValue}
       />
       <TodoList>
+        {loading && <p>estamos cargando</p>}
+        {error && <p>panico</p>}
+        {!loading && searchedTodos.lenght === 0 && <p>agrega un Todo</p>}
         {searchedTodos.map(todo => (
           <TodoItem 
             key={todo.text} 
