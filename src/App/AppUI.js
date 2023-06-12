@@ -8,41 +8,46 @@ import { TodosLoading } from '../TodoLoading/TodosLoading';
 import { TodosError } from '../TodosError/TodosError';
 import { EmptyTodos } from '../EmptyTodos/EmptyTodos';
 import { TodoContext } from '../TodoContext/TodoContext';
+import { Modal } from '../Modal/Modal';
 
 
 
 
 export const AppUI = () => {
+  const { 
+    loading,
+    error,
+    searchedTodos,
+    onComplete,
+    onDelete,
+    openModal,
+   } = React.useContext(TodoContext);
+
   return (
     <>
       <TodoCounter/>
-      <TodoSearch/>
-      <TodoContext.Consumer>
-        {({
-          loading,
-          error,
-          searchedTodos,
-          onComplete,
-          onDelete,
-        })=>(
-          <TodoList>
-            {loading && <TodosLoading />}
-            {error && <TodosError/>}
-            {!loading && searchedTodos.lenght === 0 && <EmptyTodos/>}
-            {searchedTodos.map(todo => (
-              <TodoItem 
-                key={todo.text} 
-                text={todo.text}
-                completed= {todo.completed}
-                onComplete={() => onComplete(todo.text)}
-                onDelete = {() => onDelete(todo.text)}
-              />
-            ))}
-            
-          </TodoList>
-        )}
-      </TodoContext.Consumer>
-      <CreateTodoButton/>   
+      <TodoSearch/>       
+      <TodoList>
+        {loading && <TodosLoading />}
+        {error && <TodosError/>}
+        {!loading && searchedTodos.lenght === 0 && <EmptyTodos/>}
+        {searchedTodos.map(todo => (
+          <TodoItem 
+            key={todo.text} 
+            text={todo.text}
+            completed= {todo.completed}
+            onComplete={() => onComplete(todo.text)}
+            onDelete = {() => onDelete(todo.text)}
+          />
+        ))}
+      </TodoList>
+      <CreateTodoButton/>  
+      
+      { openModal && (
+        <Modal>
+          Aqui se agrego
+        </Modal> 
+      )}
     </>
   )
 }
