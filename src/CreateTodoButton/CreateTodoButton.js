@@ -9,7 +9,7 @@ export function CreateTodoButton () {
         className='CreateTodoButton'
         onClick={
           (event) => {
-            setOpenModal((value)=> !value)
+            setOpenModal((value)=> !value);
           }
         }
       >+</button>
