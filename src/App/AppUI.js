@@ -9,6 +9,7 @@ import { TodosError } from '../TodosError/TodosError';
 import { EmptyTodos } from '../EmptyTodos/EmptyTodos';
 import { TodoContext } from '../TodoContext/TodoContext';
 import { Modal } from '../Modal/Modal';
+import { TodoForm } from '../TodoForm/TodoForm';
 
 
 
@@ -45,7 +46,7 @@ export const AppUI = () => {
       
       { openModal && (
         <Modal>
-          Aqui se agrego
+          <TodoForm/>
         </Modal> 
       )}
     </>
